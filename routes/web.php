@@ -23,12 +23,18 @@ Route::get('/login', function () {
     return view('login.index');
 })->name('login');
 
-
-
 /** Akses route user user (student) */
 Route::middleware('user')->prefix('student')->group(function () {
     Route::get('/',[StudentController::class,'index']);
     Route::post('/add',[StudentController::class,'create']);
+    Route::get('/show',[StudentController::class,'show']);
+    Route::get('/edit',[StudentController::class,'edit']);
+    Route::patch('/edit',[StudentController::class,'update']);
+    Route::get('/pwd',[UserController::class,'resetPwd']);
+    Route::post('/pwd',[UserController::class,'changePwd']);
+    Route::get('/post', function () {
+        return view('post.form');
+    });
 });
 
 /** Akses route user admin */

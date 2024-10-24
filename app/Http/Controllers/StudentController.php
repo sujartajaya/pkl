@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use Session;
 
 class StudentController extends Controller
 {
@@ -14,8 +16,8 @@ class StudentController extends Controller
     public function index()
     {
         if (Auth::check()) {
-            $name = Auth::user()->name;
-            return view('student.index');
+            $data = Student::where('user_id',Auth::user()->id)->first();
+            return view('student.index', compact('data'));
         }
         return view('login.index');
     }
@@ -27,7 +29,7 @@ class StudentController extends Controller
     {
         $credentials = $request->validate([
             'nim' => ['required','unique:students'],
-            'fakultas' => ['required'],
+            'fakultas' => ['required'], 
             'prodi' => ['required'],
         ]);
         $credentials['user_id'] = Auth::user()->id;
@@ -51,7 +53,8 @@ class StudentController extends Controller
      */
     public function show(Student $student)
     {
-        //
+        $data = User::with('student')->where('id',Auth::user()->id)->first();
+        return json_encode($data);
     }
 
     /**
@@ -59,7 +62,9 @@ class StudentController extends Controller
      */
     public function edit(Student $student)
     {
-        //
+        $data = Student::where('user_id',Auth::user()->id)->first();
+        $name = Auth::user()->name;
+        return view('student.form',['name'=>$name, 'nim'=>$data->nim, 'fakultas'=>$data->fakultas,'prodi'=>$data->prodi]);
     }
 
     /**
@@ -67,7 +72,17 @@ class StudentController extends Controller
      */
     public function update(Request $request, Student $student)
     {
-        //
+        $validatedData = $request->validate([
+            'nim' => 'sometimes|string|unique:students',  
+            'fakultas' => 'sometimes|string',
+            'prodi' => 'sometimes|string',
+            // Additional validation rules for partial updates
+        ]);
+        $data1 = Student::where('user_id',Auth::user()->id)->first();
+        $idstudent = Student::findOrFail($data1->id);
+        $idstudent->update($validatedData);
+        $data = Student::where('user_id',Auth::user()->id)->first();
+        return view('student.index', compact('data'));
     }
 
     /**

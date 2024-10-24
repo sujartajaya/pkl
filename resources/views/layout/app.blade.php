@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   @vite('resources/css/app.css')
 </head>
-    <body class="w-screen overflow-hidden flex" style="background: #edf2f7;">
+    <body class="w-screen overflow-y-auto overflow-x-hidden flex" style="background: #edf2f7;">
         <div id="app" class="w-full">
         <nav
             class="relative px-4 py-2 flex justify-between items-center bg-white dark:bg-gray-800 border-b-2 dark:border-gray-600 w-full">
@@ -43,7 +43,7 @@
                     <div class=" relative mx-auto text-gray-600">
                         <span class="hidden" id="util_data" data=""></span>
                         <a class=" py-1.5 px-3 m-1 text-center bg-gray-100 border border-gray-300 rounded-md text-black  hover:bg-gray-100 dark:text-gray-300 dark:bg-gray-700 hidden lg:inline-block "
-                        href="/post">
+                        href="/student/post">
                         New Post
                         </a>
                     </div>
@@ -52,7 +52,7 @@
                     <div class=" relative mx-auto text-gray-600">
                         <span class="hidden" id="util_data" data=""></span>
                         <a class=" py-1.5 px-3 m-1 text-center bg-gray-100 border border-gray-300 rounded-md text-black  hover:bg-gray-100 dark:text-gray-300 dark:bg-gray-700 hidden lg:inline-block "
-                        href="/profile">
+                        href="/student">
                         Profile
                         </a>
                     </div>

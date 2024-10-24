@@ -57,12 +57,12 @@
                     <div class=" relative mx-auto text-gray-600">
                         <span class="hidden" id="util_data" data=""></span>
                         <a class=" py-1.5 px-3 m-1 text-center bg-gray-100 border border-gray-300 rounded-md text-black  hover:bg-gray-100 dark:text-gray-300 dark:bg-gray-700 hidden lg:inline-block "
-                        href="#">
+                        href="/student/edit">
                         Edit
                         </a>
                         <span class="hidden" id="util_data" data=""></span>
                         <a class=" py-1.5 px-3 m-1 text-center bg-blue-100 border border-blue-300 rounded-md text-black  hover:bg-blue-100 dark:text-blue-300 dark:bg-blue-700 hidden lg:inline-block "
-                        href="#">
+                        href="/student/pwd">
                         Change Password
                         </a>
                     </div>
